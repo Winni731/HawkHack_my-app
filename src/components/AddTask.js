@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Form from 'react-bootstrap/Form'
 
 const AddTask = ({onAdd}) => {
     const [text, setText] = useState('')
@@ -22,31 +23,37 @@ const AddTask = ({onAdd}) => {
 
     return (
         <form className='add-form' onSubmit={onSubmit} >
-            <div className='form-control'>
-                <label>NoteBook</label>
-                <input type='text' 
-                style={{height: 220,
-                    width: 500,
-                    margin: 0,
-                    align: 'left'
-                }}
-                placeholder = 'Start your Stories...'
+            <Form>
+            <Form.Group className='form-control'
+            placeholder = 'Start your Stories...'>
+                <Form.Label style={{
+                                textAlign: 'top'
+                              }}></Form.Label>
+                <Form.Control as='textarea'
+                style={{
+                                height: 220,
+                                width: 500,
+                                margin: 0,
+                              }}
+                rows={10}
                 value={text} onChange={ (e)=>setText(e.target.value)} />
-            </div>
+                </Form.Group>
+            </Form>
             <div className='form-control'>
                 <label>Day and Time</label>
-                <input type='text' placeholder = 'Add Day and Time' 
-                value={day} onChange={ (e)=>setDay(e.target.value)}/>
+                <input type='text' disabled
+                style={{ width: 400}}
+                value={Date().toLocaleString()} onChange={ (e)=>setDay(e.target.value)}/>
             </div>
             <div className='form-control
             form-control-check'>
-                <label>Set Reminder</label>
+                <label>Important-Tag</label>
                 <input type='checkbox' 
                 checked={reminder}
                 value={reminder} onChange={ (e)=>setReminder(e.currentTarget.checked)}/>
             </div>
 
-            <input type='submit' value='Save Task' 
+            <input type='submit' value='Save Story' 
             className='btn btn-block' />
         </form>
     )

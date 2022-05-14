@@ -18,20 +18,7 @@ import Noter from './components/Noter'
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
-  const [tasks, setTasks] = useState([
-    {
-        id: 1,
-        text: 'Food Shopping',
-        day: 'Feb 5th at 2:30 pm',
-        reminder: false
-    },
-    {
-        id: 2,
-        text: 'Food Eating',
-        day: 'Feb 6th at 2:30 pm',
-        reminder: false
-    }
-])
+  const [tasks, setTasks] = useState([])
 
 
   const addTask = (task) => {
