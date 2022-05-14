@@ -14,7 +14,7 @@ import { FaFileCsv } from 'react-icons/fa'
 //import ReactShadowRoot from 'react-shadow-root'
 // import cat from './cat.jpg'
 // import TextInput from './components/TextInput';
-// import Noter from './components/Noter'
+import Noter from './components/Noter'
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -155,11 +155,10 @@ function App() {
   return (
     <div className="App" style={divStyle}>
       {/* <ReactShadowRoot> This is a shadow Text !!!</ReactShadowRoot> */}
-      <Header onAdd={() => setShowAddTask(!showAddTask)}
-      showAdd={showAddTask}/>
-      <Tasks tasks={tasks} onDelete={deleteTask} />
+      <Header />
+      {/* <Tasks tasks={tasks} onDelete={deleteTask} />
       {showAddTask && <AddTask onAdd={addTask}/>}
-      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''} 
+      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''}  */}
       <p>
         
       </p>
@@ -213,12 +212,12 @@ function App() {
        </fieldset>
        <button type="submit" >Submit</button>
       </form> */}
-      {/* <Noter onAdd={() => setShowAddTask(!showAddTask)}
-      showAdd={showAddTask}/> */}
+      <Noter onAdd={() => setShowAddTask(!showAddTask)}
+      showAdd={showAddTask}/>
       {/* <TextInput style={noteStyle} onAdd={() => setShowAddTask(!showAddTask)}
       showAdd={showAddTask}/> */}
-      {/* {showAddTask && <AddTask onAdd={addTask}/>}
-      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''} */}
+      {showAddTask && <AddTask onAdd={addTask}/>}
+      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''}
     </div>
   )
 }

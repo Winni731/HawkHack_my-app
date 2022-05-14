@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom'
 import MicRecorder from 'mic-recorder-to-mp3'
 // import Titles from './Titles'
 
-const Header = ({title, onAdd, showAdd}) => {
+const Header = ({title}) => {
   const onClick = () => {
     console.log('click confirmed!')
   }
@@ -31,9 +31,9 @@ const Header = ({title, onAdd, showAdd}) => {
   return (
     <header className='header'>
         <h1 style={myStyle}>{title}</h1>
-        <Button color={showAdd ? 'grey' : 'pink'}
+        {/* <Button color={showAdd ? 'grey' : 'pink'}
          text={showAdd ? '离开添加' : '添加新任务'} onClick=
-        {onAdd}></Button>
+        {onAdd}></Button> */}
     </header>
   )
 }
