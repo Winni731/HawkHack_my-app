@@ -23,8 +23,14 @@ const AddTask = ({onAdd}) => {
     return (
         <form className='add-form' onSubmit={onSubmit} >
             <div className='form-control'>
-                <label>Task</label>
-                <input type='text' placeholder = 'Add Task'
+                <label>NoteBook</label>
+                <input type='text' 
+                style={{height: 220,
+                    width: 500,
+                    margin: 0,
+                    align: 'left'
+                }}
+                placeholder = 'Start your Stories...'
                 value={text} onChange={ (e)=>setText(e.target.value)} />
             </div>
             <div className='form-control'>
