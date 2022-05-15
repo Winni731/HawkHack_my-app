@@ -53,9 +53,6 @@ function App() {
     const data = await res.json()
 
     setTasks([...tasks, data])
-    // const id = Math.floor(Math.random()*10000000) + 1
-    // const newTask = { id, ...task }
-    // setTasks([...tasks, newTask])
   }
 
   const deleteTask = async (id) => {
@@ -185,70 +182,30 @@ function App() {
 
   return (
     <div className="App" style={divStyle}>
-      {/* <ReactShadowRoot> This is a shadow Text !!!</ReactShadowRoot> */}
       <Header />
-      {/* <Header onAdd={() => setShowAddTask(!showAddTask)}
-      showAdd={showAddTask}/>
-      <Tasks tasks={tasks} onDelete={deleteTask} />
-      {showAddTask && <AddTask onAdd={addTask}/>}
-      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''}  */}
       <p>
         
       </p>
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      {/* <AudioPlayer onPlay= {() => set}/> */}
-      {/* <TextFild value={write} 
-      label="write your sharing"
-      onChange={ (e) => {
-        setName(e.target.value);
-      }} />
-      <h3>Your Enter Value is: {write}</h3> */}
       <FaMicrophone style={{color: 'black', cursor: 'pointer'}} onClick={startRecording} disabled={isRecording} />
       <FaSquare style={{color: 'red', cursor: 'pointer'}} onClick={stopRecording} disabled={!isRecording} />
       <audio
         ref={audioPlayer}
         src={blobURL}
         controls="controls"
-        onLoadedMetadata={setTime} //fethches metadata info like duration
-        onTimeUpdate={setTime} //event handler whenever time progresses on player
+        onLoadedMetadata={setTime} 
+        onTimeUpdate={setTime} 
         onEnded={() => setPlay(false)} //event handler when audio has stopped playing
       />
       <button onClick={playPause} disabled={!blobURL}>
         {play ? "Pause" : "Play"}
       </button>{" "}
-      {/*handle play/pause*/}
       <button onClick={handlePrev} disabled={!blobURL}>
         Previous
       </button>{" "}
-      {/*handle previous*/}
-      <p ref={displayTime}>Time {timer.current}</p> {/*Displays time*/}
+      <p ref={displayTime}>Time {timer.current}</p> 
 
-      {/* <form>
-      <fieldset>
-         <label>
-           <p><b>what's do you want to share today ?</b></p>
-           <input name="name" />
-         </label>
-       </fieldset>
-       <button type="submit" >Submit</button>
-      </form> */}
       <Noter onAdd={() => setShowAddTask(!showAddTask)}
       showAdd={showAddTask}/> 
-      {/* <TextInput style={noteStyle} onAdd={() => setShowAddTask(!showAddTask)}
-      showAdd={showAddTask}/> */}
       {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''} 
     </div>

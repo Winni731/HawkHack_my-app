@@ -31,9 +31,6 @@ const Header = ({title}) => {
   return (
     <header className='header'>
         <h1 style={myStyle}>{title}</h1>
-        {/* <Button color={showAdd ? 'grey' : 'pink'}
-         text={showAdd ? 'Leave NoteBook' : 'Start Story'} onClick=
-        {onAdd}></Button> */}
     </header>
   )
 }
