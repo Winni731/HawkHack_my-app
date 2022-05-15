@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### import library 
+     npm i 'react-icons'
+     npm i 'mic-recorder-to-mp3'
+     
+### install json server
+    npm i json-server
+    add "server":"json-server --watch db.json --port 8000" to {}package.json below "eject"
+    
+### npm run server
+    npm start
+    
