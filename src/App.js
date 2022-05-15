@@ -1,40 +1,84 @@
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import { useState, useEffect, useRef } from 'react'
 import cool from './cool.jpg'
 import AddTask from './components/AddTask'
-// import AudioPlayer from "./components/AudioPlayer"
 import { icons } from 'react-icons';
 import MicRecorder from 'mic-recorder-to-mp3'
 import { FaMicrophone } from 'react-icons/fa'
 import { FaSquare } from 'react-icons/fa'
 import { FaFileCsv } from 'react-icons/fa'
 //import ReactShadowRoot from 'react-shadow-root'
-// import cat from './cat.jpg'
-// import TextInput from './components/TextInput';
 import Noter from './components/Noter'
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
 
+  useEffect( () => {
+    const getTasks = async () => {
+      const tasksFromServer = await fetchTasks()
+      setTasks(tasksFromServer)
+    }
 
-  const addTask = (task) => {
-    const id = Math.floor(Math.random()*10000) + 1
-    const newTask = { id, ...task }
-    setTasks([...tasks, newTask])
+    getTasks()
+  }, [])
+
+  const fetchTasks = async () => {
+    const res = await fetch('http://localhost:8000/tasks')
+    const data = await res.json()
+
+    return data
   }
 
-  const deleteTask = (id) => {
+  const fetchTask = async (id) => {
+    const res = await fetch(`http://localhost:8000/tasks/${id}`)
+    const data = await res.json()
+
+    return data
+  }
+
+
+  const addTask = async (task) => {
+    const res = await fetch('http://localhost:8000/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(task)
+    })
+
+    const data = await res.json()
+
+    setTasks([...tasks, data])
+    // const id = Math.floor(Math.random()*10000000) + 1
+    // const newTask = { id, ...task }
+    // setTasks([...tasks, newTask])
+  }
+
+  const deleteTask = async (id) => {
+    await fetch(`http://localhost:8000/tasks/${id}`, {
+      method: 'DELETE'
+    })
     console.log('delete', id)
     setTasks(tasks.filter((task) => task.id != id))
   }
 
-  const toggleReminder = (id) => {
+  const toggleReminder = async (id) => {
+    const taskToToggle = await fetchTask(id)
+    const updatedTask = { ...taskToToggle, reminder: !taskToToggle.reminder}
+    const res = await fetch(`http://localhost:8000/tasks/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedTask)
+    })
+    const data = await res.json()
     setTasks(tasks.map((task) => task.id === id ? {
-      ...task, reminder: !task.reminder
+      ...task, reminder: data.reminder
     } : task))
   }
 
@@ -143,7 +187,9 @@ function App() {
     <div className="App" style={divStyle}>
       {/* <ReactShadowRoot> This is a shadow Text !!!</ReactShadowRoot> */}
       <Header />
-      {/* <Tasks tasks={tasks} onDelete={deleteTask} />
+      {/* <Header onAdd={() => setShowAddTask(!showAddTask)}
+      showAdd={showAddTask}/>
+      <Tasks tasks={tasks} onDelete={deleteTask} />
       {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''}  */}
       <p>
@@ -200,14 +246,13 @@ function App() {
        <button type="submit" >Submit</button>
       </form> */}
       <Noter onAdd={() => setShowAddTask(!showAddTask)}
-      showAdd={showAddTask}/>
+      showAdd={showAddTask}/> 
       {/* <TextInput style={noteStyle} onAdd={() => setShowAddTask(!showAddTask)}
       showAdd={showAddTask}/> */}
       {showAddTask && <AddTask onAdd={addTask}/>}
-      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''}
+      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : ''} 
     </div>
   )
 }
 
 export default App
-
