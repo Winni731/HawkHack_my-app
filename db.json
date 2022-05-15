@@ -1,16 +1,3 @@
 {
-  "tasks": [
-    {
-      "text": "今天天气真好呀",
-      "day": "",
-      "reminder": true,
-      "id": 1
-    },
-    {
-      "text": "今天是个好天气",
-      "day": "",
-      "reminder": true,
-      "id": 2
-    }
-  ]
+  "tasks": []
 }

@@ -5,10 +5,10 @@ const Task = ({ task, onDelete, onToggle}) => {
         <div className={`task ${task.reminder ? 'reminder' : ''}`}
         onDoubleClick ={()=> onToggle(task.id)} 
         >
-            <h3>请记得： {task.text}  <FaTimes style={{color: 'red', cursor: 'pointer'}}  onClick=
+            <h3>memo: {task.text}  <FaTimes style={{color: 'red', cursor: 'pointer'}}  onClick=
             { () => onDelete(task.id)} /> 
             </h3>
-            <p>清单号：{task.id}</p>
+            <p>id: {task.id}</p>
         </div>
     )
 }
